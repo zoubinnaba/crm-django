@@ -27,6 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Custum user model
+
+AUTH_USER_MODEL = "leads.User"
 
 # Application definition
 
