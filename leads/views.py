@@ -57,3 +57,9 @@ def lead_update(request, pk):
         "form": form,
         "lead": lead
     })
+    
+
+def lead_delete(request, pk):
+    lead = Lead.objects.get(id=pk)
+    lead.delete()
+    return redirect("leads:lead_list")
