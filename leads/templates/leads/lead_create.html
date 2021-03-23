@@ -10,7 +10,12 @@
     <div>
         <a href="{% url 'leads:lead_list' %}">Go back to leads</a>
         <hr>
-        <h1>Create lead</h1>
+        <h1>Create new lead</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Add lead</button>
+        </form>
     </div>
 </body>
 </html>
