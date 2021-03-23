@@ -8,6 +8,8 @@
 </head>
 <body>
     <ul>
+        <a href="{% url 'leads:lead_create'%}">Create a lead</a>
+        <hr>
         <h1>This is our lead list</h1>
         {% for lead in leads %}
             <div>
