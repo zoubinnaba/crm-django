@@ -4,7 +4,7 @@ from leads.views import (
     lead_detail,
     lead_create,
     lead_update,
-    lead_delete
+    lead_delete,
 )
 
 app_name = "leads"
