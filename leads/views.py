@@ -40,3 +40,20 @@ def lead_create(request):
     return render(request, 'leads/lead_create.html',{
         "form": form
     })
+    
+    
+def lead_update(request, pk):
+    lead = Lead.objects.get(id=pk)
+    form = LeadForm(instance=lead)
+    
+    if request.method == 'POST':
+        form = LeadForm(request.POST, instance=lead)
+        
+        if form.is_valid():
+            form.save()
+            return redirect("leads:lead_list")
+            
+    return render(request, 'leads/lead_update.html',{
+        "form": form,
+        "lead": lead
+    })
