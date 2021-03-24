@@ -6,8 +6,15 @@ from leads.models import (
     Agent,
     User
 )
-from leads.forms import LeadModelForm
+from leads.forms import LeadModelForm, CustumUserCreationForm
 
+
+class SignupView(generic.CreateView):
+    template_name = "registration/signup.html"
+    form_class = CustumUserCreationForm
+
+    def  get_success_url(self):
+        return reverse("login")
 
 class LandingPageView(generic.TemplateView):
     template_name = "landing.html"
