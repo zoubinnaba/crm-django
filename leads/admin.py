@@ -3,11 +3,13 @@ from django.contrib import admin
 from leads.models import (
     User,
     Lead,
-    Agent
+    Agent,
+    UserProfil
 )
 
 
 admin.site.register(User)
 admin.site.register(Lead)
 admin.site.register(Agent)
+admin.site.register(UserProfil)
 
