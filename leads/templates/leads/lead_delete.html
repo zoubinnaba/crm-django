@@ -5,6 +5,9 @@
         <a href="{% url 'leads:lead_list' %}">Go back to leads</a>
         <hr>
         <h1>Are you want to delete this lead ?</h1>
-        <button type="submit">Delete</button>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Delete</button>
+        </form>
     </div>
 {% endblock content%}
