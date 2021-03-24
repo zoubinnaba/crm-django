@@ -36,15 +36,6 @@ class LeadCreateView(CreateView):
         
 
 
-# def lead_update(request, pk):
-#     lead = Lead.objects.get(id=pk)
-#     form = LeadModelForm(request.POST, instance=lead)
-#     if request.method == "POST":
-#         form = LeadModelForm(request.POST, instance=lead)
-#         if form.is_valid():
-#             form.save()
-#             return reverse("leads:lead_list")
-#     return render(request, "leads/lead_update.html", {"form": form, "lead": lead})
 
 class LeadUpdateView(UpdateView):
     template_name = "leads/lead_update.html"
