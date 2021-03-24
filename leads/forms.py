@@ -3,7 +3,7 @@ from django.forms import fields
 
 from leads.models import Lead
 
-class LeadForm(forms.ModelForm):
+class LeadModelForm(forms.ModelForm):
     
     class Meta:
         model = Lead
