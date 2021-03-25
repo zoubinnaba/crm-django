@@ -4,12 +4,12 @@ from leads.models import (
     User,
     Lead,
     Agent,
-    UserProfil
+    UserProfile
 )
 
 
 admin.site.register(User)
 admin.site.register(Lead)
 admin.site.register(Agent)
-admin.site.register(UserProfil)
+admin.site.register(UserProfile)
 

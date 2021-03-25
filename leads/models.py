@@ -4,10 +4,11 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
-    pass
+    is_organisator = models.BooleanField(default=True)
+    is_agent = models.BooleanField(default=False)
 
 
-class UserProfil(models.Model):
+class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     
     def __str__(self) -> str:
@@ -28,7 +29,7 @@ class Lead(models.Model):
     
 class Agent(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    organisation = models.ForeignKey(UserProfil, on_delete=models.CASCADE)
+    organisation = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     
     def __str__(self) -> str:
         return self.user.email
@@ -37,6 +38,6 @@ class Agent(models.Model):
 def post_user_created_signal(sender, instance, created, **kwargs):
     print(instance)
     if created:
-        UserProfil.objects.create(user=instance)
+        UserProfile.objects.create(user=instance)
 
 post_save.connect(post_user_created_signal, sender=User)

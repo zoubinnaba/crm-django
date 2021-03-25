@@ -4,8 +4,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic 
 from leads.models import (
     Lead,
-    Agent,
-    User
 )
 from leads.forms import LeadModelForm, CustumUserCreationForm
 
