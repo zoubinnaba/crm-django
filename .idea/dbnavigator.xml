@@ -21,7 +21,7 @@
     </export-instructions>
   </component>
   <component name="DBNavigator.Project.DatabaseBrowserManager">
-    <autoscroll-to-editor value="false" />
+    <autoscroll-to-editor value="true" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
     <loaded-nodes />
@@ -73,7 +73,7 @@
           <description value="" />
           <database-type value="POSTGRES" />
           <config-type value="BASIC" />
-          <database-version value="9999.0" />
+          <database-version value="12.6" />
           <driver-source value="BUILTIN" />
           <driver-library value="" />
           <driver value="" />
@@ -82,8 +82,8 @@
           <port value="5432" />
           <database value="postgres" />
           <type value="USER_PASSWORD" />
-          <user value="" />
-          <deprecated-pwd value="" />
+          <user value="root" />
+          <deprecated-pwd value="cm9vdA==" />
         </database>
         <properties>
           <auto-commit value="false" />
@@ -325,7 +325,7 @@
       <tracking-columns>
         <columnNames value="" />
         <visible value="true" />
-        <editable value="false" />
+        <editable value="true" />
       </tracking-columns>
     </dataset-grid-settings>
     <dataset-editor-settings>
@@ -368,7 +368,7 @@
         </content-types>
       </qualified-text-editor>
       <record-navigation>
-        <navigation-target value="VIEWER" />
+        <navigation-target value="EDITOR" />
       </record-navigation>
     </dataset-editor-settings>
     <code-editor-settings>
