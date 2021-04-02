@@ -1,3 +1,4 @@
+import logging
 from django.core.mail import send_mail
 from django.contrib import messages
 from django.http import JsonResponse
@@ -16,6 +17,9 @@ from leads.forms import (
     CategoryModelForm
 )
 from agents.mixins import OrganisorAndLoginRequiredMixin
+
+
+logger = logging.getLogger(__name__)
 
 
 class SignupView(generic.CreateView):
