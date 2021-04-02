@@ -1,4 +1,6 @@
 from django.core.mail import send_mail
+from django.contrib import messages
+from django.http import JsonResponse
 from django.shortcuts import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
@@ -96,6 +98,8 @@ class LeadCreateView(OrganisorAndLoginRequiredMixin, generic.CreateView):
             from_email="test@test.com",
             recipient_list=["test2@test.com"]
         )
+
+        messages.success(self.request, 'You have successfully create a lead')
         return super(LeadCreateView, self).form_valid(form)
 
 
@@ -252,3 +256,17 @@ class CategoryDeleteView(OrganisorAndLoginRequiredMixin, generic.DeleteView):
         else:
             queryset = Category.objects.filter(organisation=user.agent.organisation)
         return queryset
+
+
+class LeadJsonView(generic.View):
+
+    def get(self, request, *args, **kwargs):
+        qs = list(Lead.objects.all().values(
+            'first_name',
+            'last_name',
+            'age'
+        ))
+
+        return JsonResponse({
+            'qs': qs
+        })
