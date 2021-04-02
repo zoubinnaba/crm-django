@@ -1,4 +1,5 @@
 from django import forms
+from django.core.exceptions import ValidationError
 from django.contrib.auth import get_user_model
 from django.forms import fields
 from django.contrib.auth.forms import UserCreationForm, UsernameField
@@ -20,6 +21,12 @@ class LeadModelForm(forms.ModelForm):
             "phone_number",
             "email"
         )
+
+    # def clean_first_name(self):
+    #     data = self.cleaned_data["first_name"]
+    #     if data != "Jeo":
+    #         raise ValidationError("Your name is not Jeo")
+    #     return data
 
 
 class CustumUserCreationForm(UserCreationForm):
