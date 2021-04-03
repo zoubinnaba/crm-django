@@ -19,7 +19,8 @@ class LeadModelForm(forms.ModelForm):
             "agent",
             "description",
             "phone_number",
-            "email"
+            "email",
+            'profile_picture'
         )
 
     # def clean_first_name(self):
