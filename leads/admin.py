@@ -5,7 +5,8 @@ from leads.models import (
     Lead,
     Agent,
     UserProfile,
-    Category
+    Category,
+    FollowUp
 )
 
 
@@ -24,3 +25,4 @@ admin.site.register(Lead, LeadAdmin)
 admin.site.register(Agent)
 admin.site.register(UserProfile)
 admin.site.register(Category)
+admin.site.register(FollowUp)

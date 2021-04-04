@@ -14,7 +14,7 @@ from leads.forms import (
     CustumUserCreationForm,
     AssignAgentForm,
     LeadCategoryUpdateForm,
-    CategoryModelForm
+    CategoryModelForm, FollowUpModelForm
 )
 from agents.mixins import OrganisorAndLoginRequiredMixin
 
@@ -260,6 +260,28 @@ class CategoryDeleteView(OrganisorAndLoginRequiredMixin, generic.DeleteView):
         else:
             queryset = Category.objects.filter(organisation=user.agent.organisation)
         return queryset
+
+
+class FollowUpCreateView(LoginRequiredMixin, generic.CreateView):
+    template_name = "leads/followup_create.html"
+    form_class = FollowUpModelForm
+
+    def get_success_url(self):
+        return reverse("leads:lead_detail", kwargs={"pk": self.kwargs["pk"]})
+
+    def get_context_data(self, **kwargs):
+        context = super(FollowUpCreateView, self).get_context_data(**kwargs)
+        context.update({
+            "lead": Lead.objects.get(pk=self.kwargs["pk"])
+        })
+        return context
+
+    def form_valid(self, form):
+        lead = Lead.objects.get(pk=self.kwargs["pk"])
+        followup = form.save(commit=False)
+        followup.lead = lead
+        followup.save()
+        return super(FollowUpCreateView, self).form_valid(form)
 
 
 class LeadJsonView(generic.View):
