@@ -7,7 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
 from leads.models import (
     Lead,
-    Category
+    Category, FollowUp
 )
 from leads.forms import (
     LeadModelForm,
@@ -282,6 +282,40 @@ class FollowUpCreateView(LoginRequiredMixin, generic.CreateView):
         followup.lead = lead
         followup.save()
         return super(FollowUpCreateView, self).form_valid(form)
+
+
+class FollowUpUpdateView(LoginRequiredMixin, generic.UpdateView):
+    template_name = "leads/followup_update.html"
+    form_class = FollowUpModelForm
+
+    def get_queryset(self):
+        user = self.request.user
+        if user.is_organisor:
+            queryset = FollowUp.objects.filter(lead__organisation=user.userprofile)
+        else:
+            queryset = FollowUp.objects.filter(lead__organisation=user.agent.organisation)
+            queryset = queryset.filter(lead__agent__user=user)
+        return queryset
+
+    def get_success_url(self):
+        return reverse("leads:lead_detail", kwargs={"pk": self.get_object().lead.id})
+
+
+class FollowUpDeleteView(LoginRequiredMixin, generic.DeleteView):
+    template_name = "leads/followup_delete.html"
+
+    def get_success_url(self):
+        followup = FollowUp.objects.get(id=self.kwargs["pk"])
+        return reverse("leads:lead_detail", kwargs={"pk": followup.lead.pk})
+
+    def get_queryset(self):
+        user = self.request.user
+        if user.is_organisor:
+            queryset = FollowUp.objects.filter(lead__organisation=user.userprofile)
+        else:
+            queryset = FollowUp.objects.filter(lead__organisation=user.agent.organisation)
+            queryset = queryset.filter(lead__agent__user=user)
+        return queryset
 
 
 class LeadJsonView(generic.View):
