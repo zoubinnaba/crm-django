@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     # Thrid party apps
     'crispy_forms',
     "crispy_tailwind",
+    "tailwind",
+    "theme"
 ]
 
 MIDDLEWARE = [
@@ -166,3 +168,7 @@ LOGGING = {
         'level': 'WARNING',
     },
 }
+
+TAILWIND_APP_NAME = 'theme'
+
+NPM_BIN_PATH = "/home/mapati/.nvm/versions/node/v15.13.0/bin/npm"
