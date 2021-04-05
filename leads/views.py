@@ -157,6 +157,11 @@ class LeadUpdateView(OrganisorAndLoginRequiredMixin, generic.UpdateView):
     def get_success_url(self):
         return reverse("leads:lead_list")
 
+    def form_valid(self, form):
+        form.save()
+        messages.info(self.request, "You have successfully updates lead")
+        return super(LeadUpdateView, self).form_valid(form)
+
 
 class LeadDeleteView(OrganisorAndLoginRequiredMixin, generic.DeleteView):
     template_name = "leads/lead_delete.html"
